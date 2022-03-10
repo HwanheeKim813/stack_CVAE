@@ -8,7 +8,7 @@ from rdkit import Chem, DataStructs
 from stack_cvae.batch_data import GeneratorData 
 from utils import canonical_smiles
 import matplotlib.pyplot as plt
-from CVAE_BA_RA_reinforcement import BA_Reinforcement_3 #
+from stackCVAE_BA_RA_reinforcement import BA_Reinforcement_3 #
 from tqdm import tqdm, trange
 import seaborn as sns
 from BA_reward_CVAE import PIN, get_pSeqDict, get_disease_target_genes, prepareBReward, calc_biological_reward_v2, calc_biological_reward_for_DTG
