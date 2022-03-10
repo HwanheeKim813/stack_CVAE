@@ -35,7 +35,7 @@ mt_path = "./data_ppi/HUMAN_9606_idmapping.dat"
 pseq_path = "./data_ppi/uniprot_sprot.fasta"
 disGene_path = "./data_ppi/cancer_gene_census.csv"
 
-#바인딩 어피니티 할 때 필요
+
 target_plist_path = "./data_ppi/groupA_protein_list.txt"
 target_pseq_dict_path = "./data_ppi/groupA.pickle"
 
@@ -70,7 +70,7 @@ def estimate_and_update(generator, j,n_to_generate):
     return canonical
 
 
-gen_data_path = '/BiO2/DrugDesign/ReLeaSE/data/chembl_smiles_prop.txt'
+gen_data_path = './data/chembl_smiles_prop.txt'
 batch_size = 1
 latent_size = 200
 unit_size = 512
@@ -89,8 +89,8 @@ my_generator = stack_CVAE(input_size=gen_data.n_characters,layer_type = layer_ty
 my_generator = my_generator.cuda()
 print(my_generator)
 
-### 사용하는 generate 모델 경로!!!
-generator_model = '/BiO2/DrugDesign/ReLeaSE/model/pretrain_model.pth'
+### pretrained generate model path
+generator_model = './model/pretrain_model.pth'
 
 my_generator.load_model(generator_model)	
 
@@ -167,7 +167,7 @@ print("side_pSeq_dict: " + str(len(side_pSeq_dict.keys())))
 print("dis_Prot_list: " + str(dis_Prot_list))
 print("geneSet: " + str(geneSet))
 
-#강화학습 모델
+#reinforcement model
 
 RL_BA = BA_Reinforcement_3(my_generator, get_reward_BA_continued, 
                            target_pSeq_dict,groupD_pseq_dict,side_pSeq_dict, ppi_graph, dis_Prot_list,
@@ -176,7 +176,7 @@ print("my reinforcement load success")
 rewards = []
 rl_losses = []
 
-path = 'CVAE_sorafenib'
+path = 'sorafenib'
 
 paths = {}
 paths['Average_reward'] = './{}_result/groupA_D_continued/plot/Average_reward'.format(path)
@@ -197,8 +197,7 @@ for p in paths:
         print(p)
         os.makedirs(p) 
 
-# n_iterations만큼 학습진행
-for i in range(301,n_iterations):
+for i in range(1,n_iterations):
     for j in trange(n_policy, desc='Policy gradient...'):
         print(j)
         #policy_gradient 함수를 불러와서 학습진행
