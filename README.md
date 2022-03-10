@@ -26,3 +26,11 @@ conda install pytorch=1.1.0 torchvision=0.2.1 -c pytorch
 pip install requirements.txt
 </code>
 </pre>
+
+Run
+-------------
+<pre>
+<code>
+python stack_CVAE_BA_RA_rein.py
+</code>
+</pre>
