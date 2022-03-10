@@ -13,7 +13,7 @@ installation with anaconda
 <pre>
 <code>
 # Clone the reopsitory to your desired directory
-git clone https://github.com/hwanhee.stack_CVAE.git
+git clone https://github.com/HwanheeKim813/stack_CVAE.git
 cd stack_CVAE
 # Create new conda environment with Python 3.6
 conda create -n release python=3.6
