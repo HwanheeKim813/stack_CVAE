@@ -1,0 +1,10 @@
+numpy
+sckikit-learn
+scipy
+tqdm
+pytorch==1.1.0
+tensorboard==1.10.0
+tensorflow==1.11.0rc1
+tqdm==4.26.0
+xgboost==1.2.0
+ 
