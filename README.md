@@ -16,7 +16,7 @@ installation with anaconda
 git clone https://github.com/HwanheeKim813/stack_CVAE.git
 cd stack_CVAE
 # Create new conda environment with Python 3.6
-conda create -n release python=3.6
+conda create -n stack_cvae python=3.6
 # Activate the environment
 conda activate stack_CVAE
 # Install conda dependencies
