@@ -1,5 +1,5 @@
 numpy
-sckikit-learn
+scikit-learn
 scipy
 tqdm
 pytorch==1.1.0
