@@ -14,7 +14,9 @@ installation with anaconda
 <code>
 # Clone the reopsitory to your desired directory
 git clone https://github.com/HwanheeKim813/stack_CVAE.git
+
 cd stack_CVAE
+
 # Create new conda environment with Python 3.6
 conda create -n stack_CVAE python=3.6
 # Activate the environment
@@ -26,11 +28,9 @@ conda install pytorch=1.1.0 torchvision=0.2.1 -c pytorch
 pip install requirements.txt
 
 #install data
-wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1CHlXD2wyvMRxg6uI7TtDi0g4jJSwh9zG' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1CHlXD2wyvMRxg6uI7TtDi0g4jJSwh9zG" -O data.zip && rm -rf /tmp/cookies.txt
-wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1_1k5D_btqr14_WdzfPPwKNxEJYjw9SDn' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1_1k5D_btqr14_WdzfPPwKNxEJYjw9SDn" -O data_ppi.zip && rm -rf /tmp/cookies.txt
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1CvmznJFNiMu_k20MKKtdV0hL4v2KogVe' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1CvmznJFNiMu_k20MKKtdV0hL4v2KogVe" -O data.zip && rm -rf /tmp/cookies.txt
 #unzip data
 unzip data.zip
-unzip data_ppi.zip
 
 </code>
 </pre>
