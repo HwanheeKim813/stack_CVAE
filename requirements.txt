@@ -3,6 +3,5 @@ scikit-learn
 scipy
 tqdm
 tensorboard==1.10.0
-tensorflow==1.11.0rc1
+tensorflow==1.10.0
 xgboost==1.2.0
- 
