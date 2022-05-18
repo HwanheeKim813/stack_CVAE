@@ -1,3 +1,8 @@
+import sys
+import os
+from os import path
+sys.path.append(path.abspath('./stack_cvae'))
+
 import torch
 import torch.nn as nn
 from torch.optim.lr_scheduler import ExponentialLR, StepLR
@@ -10,8 +15,7 @@ from utils import canonical_smiles
 import matplotlib.pyplot as plt
 from stackCVAE_BA_RA_reinforcement import BA_Reinforcement_3 #
 from tqdm import tqdm, trange
-import seaborn as sns
-from BA_reward_CVAE import PIN, get_pSeqDict, get_disease_target_genes, prepareBReward, calc_biological_reward_v2, calc_biological_reward_for_DTG
+from BA_reward_CVAE import PIN, get_pSeqDict, get_disease_target_genes, calc_biological_reward_v2
 from rdkit.Chem import Draw
 from rdkit.Chem.Draw import DrawingOptions
 from rdkit.Chem import Draw
@@ -157,7 +161,6 @@ GS_Prot_dict = pin.construct_GSprot_dict()
 maxProtSeqLength = 500
 target_pSeq_dict = get_pSeqDict(target_plist_path, pseq_path, target_pseq_dict_path, maxProtSeqLength)
 groupD_pseq_dict = get_pSeqDict(groupD_plist_path, pseq_path, groupD_pseq_dict_path, maxProtSeqLength)
-side_pSeq_dict = get_pSeqDict(side_plist_path, pseq_path, side_pseq_dict_path, maxProtSeqLength)
 dis_Prot_list, geneSet = get_disease_target_genes(disGene_path, GS_Prot_dict)
 DeepPurpose_model = models.model_pretrained(model = 'Daylight_AAC_DAVIS')   
 
@@ -179,17 +182,17 @@ rl_losses = []
 path = 'sorafenib'
 
 paths = {}
-paths['Average_reward'] = './{}_result/groupA_D_continued/plot/Average_reward'.format(path)
-paths['Loss'] = './{}_result/groupA_D_continued/plot/Loss'.format(path)
-paths['smiles'] = './{}_result/groupA_D_continued/smiles'.format(path)
-paths['checkpoints'] = './{}/checkpoints/groupA_D_continued'.format(path)
-paths['after_saveModel'] = './{}_result/groupA_D_continued/after_saveModel'.format(path)
-paths['MW'] = './{}_result/groupA_D_continued/graph/MW'.format(path)
-paths['TPSA'] = './{}_result/groupA_D_continued/graph/TPSA'.format(path)
-paths['logP'] = './{}_result/groupA_D_continued/graph/logP'.format(path)
-paths['RAscore'] = './{}_result/groupA_D_continued/graph/RAscore'.format(path)
-paths['bindingA'] = './{}_result/groupA_D_continued/graph/bindingA'.format(path)
-paths['bindingD'] = './{}_result/groupA_D_continued/graph/bindingD'.format(path)
+paths['Average_reward'] = './{}_result/plot/Average_reward'.format(path)
+paths['Loss'] = './{}_result/plot/Loss'.format(path)
+paths['smiles'] = './{}_result/smiles'.format(path)
+paths['checkpoints'] = './{}/checkpoints'.format(path)
+paths['after_saveModel'] = './{}_result/after_saveModel'.format(path)
+paths['MW'] = './{}_result/graph/MW'.format(path)
+paths['TPSA'] = './{}_result/graph/TPSA'.format(path)
+paths['logP'] = './{}_result/graph/logP'.format(path)
+paths['RAscore'] = './{}_result/graph/RAscore'.format(path)
+paths['bindingA'] = './{}_result/graph/bindingA'.format(path)
+paths['bindingD'] = './{}_result/graph/bindingD'.format(path)
 
 for p in paths:
     print(p)
@@ -200,7 +203,7 @@ for p in paths:
 for i in range(1,n_iterations):
     for j in trange(n_policy, desc='Policy gradient...'):
         print(j)
-        #policy_gradient 함수를 불러와서 학습진행
+        #Call the policy_gradient function to train
         cur_reward, cur_loss = RL_BA.policy_gradient(gen_data,std_smiles=True) # our modification : binding affinity
         rewards.append(simple_moving_average(rewards, cur_reward)) 
         rl_losses.append(simple_moving_average(rl_losses, cur_loss))
@@ -220,7 +223,7 @@ for i in range(1,n_iterations):
     print('{} Sample trajectories:'.format(i))
     for sm in smiles_cur:
         print(sm)
-    with open(paths['smiles']"/{}_iteration_after_reinforce_smiles.pickle".format(i),"wb") as f:
+    with open(paths['smiles']+"/{}_iteration_after_reinforce_smiles.pickle".format(i),"wb") as f:
         pickle.dump(smiles_cur,f)
     if i % 20 == 0:
         model_path = paths['checkpoints']+"/checkpoint_lr{}_{}epoch".format(path,lr,i)
