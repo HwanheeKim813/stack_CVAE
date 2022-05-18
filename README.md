@@ -35,6 +35,6 @@ Run
 -------------
 <pre>
 <code>
-python stack_CVAE_BA_RA_rein.py
+python stackCVAE_rein_train.py
 </code>
 </pre>
