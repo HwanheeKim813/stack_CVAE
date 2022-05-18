@@ -46,8 +46,6 @@ target_pseq_dict_path = "./data_ppi/groupA.pickle"
 groupD_plist_path = "./data_ppi/groupD_protein_list.txt" # 
 groupD_pseq_dict_path = "./data_ppi/groupD.pickle" # group D : 붙지 않음
 
-xgb_scorer = RAscore_XGB.RAScorerXGB()
-
 def estimate_and_update(generator, j,n_to_generate):
     generated = []
     canonical = []
@@ -163,6 +161,7 @@ target_pSeq_dict = get_pSeqDict(target_plist_path, pseq_path, target_pseq_dict_p
 groupD_pseq_dict = get_pSeqDict(groupD_plist_path, pseq_path, groupD_pseq_dict_path, maxProtSeqLength)
 dis_Prot_list, geneSet = get_disease_target_genes(disGene_path, GS_Prot_dict)
 DeepPurpose_model = models.model_pretrained(model = 'Daylight_AAC_DAVIS')   
+RAscore_model = RAscore_XGB.RAScorerXGB()
 
 print("target_pSeq_dict: " + str(len(target_pSeq_dict.keys())))
 print("groupD_pseq_dict: " + str(len(groupD_pseq_dict.keys())))
@@ -173,7 +172,8 @@ print("geneSet: " + str(geneSet))
 
 RL_BA = BA_Reinforcement_3(my_generator, get_reward_BA_continued, 
                            target_pSeq_dict,groupD_pseq_dict, ppi_graph, dis_Prot_list,
-                           DeepPurpose_model, xgb_scorer,minPSeqLen=maxProtSeqLength)
+                           DeepPurpose_model, RAscore_model,minPSeqLen=maxProtSeqLength)
+                           
 print("my reinforcement load success")   
 rewards = []
 rl_losses = []
