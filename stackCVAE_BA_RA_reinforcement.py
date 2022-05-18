@@ -58,7 +58,7 @@ class BA_Reinforcement_3(object):
 
                     except:
                         reward = 0
-                else:)
+                else:
                     mol = Chem.MolFromSmiles(trajectory[1:-1])
                     reward = self.get_reward(trajectory[1:-1], 
                                                  self.target_pSeq_dict,
