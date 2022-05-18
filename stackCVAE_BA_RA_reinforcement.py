@@ -8,8 +8,8 @@ from rdkit.Chem.rdMolDescriptors import CalcTPSA
 
 class BA_Reinforcement_3(object):
     def __init__(self, generator, get_reward,
-                 target_pSeq_dict,groupD_pSeq_dict,side_pSeq_dict, ppi_graph, dis_Prot_list,
-                 DeepPurpose_model, SAscore_model, minPSeqLen=1000):
+                 target_pSeq_dict,groupD_pSeq_dict, ppi_graph, dis_Prot_list,
+                 DeepPurpose_model, RAscore_model, minPSeqLen=1000):
 
         super(BA_Reinforcement_3, self).__init__()
         self.generator = generator
@@ -17,10 +17,9 @@ class BA_Reinforcement_3(object):
         self.ppi_graph = ppi_graph
         self.target_pSeq_dict = target_pSeq_dict
         self.groupD_pSeq_dict = groupD_pSeq_dict
-        self.side_pSeq_dict = side_pSeq_dict
         self.dis_Prot_list = dis_Prot_list
         self.DeepPurpose_model = DeepPurpose_model
-        self.SAscore_model = SAscore_model
+        self.RAscore_model = RAscore_model
         self.minPSeqLen = minPSeqLen
 
     def policy_gradient(self, data, n_batch=10, gamma=0.97,
@@ -47,11 +46,10 @@ class BA_Reinforcement_3(object):
                         reward = self.get_reward(trajectory[1:-1], 
                                                  self.target_pSeq_dict,
                                                  self.groupD_pSeq_dict,
-                                                 self.side_pSeq_dict,
                                                  self.ppi_graph,
                                                  self.dis_Prot_list,
                                                  self.DeepPurpose_model,
-                                                 self.SAscore_model,
+                                                 self.RAscore_model,
                                                  self.minPSeqLen,
                                                  **kwargs)
                         prop = [ExactMolWt(mol), MolLogP(mol), CalcTPSA(mol)]
@@ -63,11 +61,10 @@ class BA_Reinforcement_3(object):
                     reward = self.get_reward(trajectory[1:-1], 
                                                  self.target_pSeq_dict,
                                                  self.groupD_pSeq_dict,
-                                                 self.side_pSeq_dict,
                                                  self.ppi_graph,
                                                  self.dis_Prot_list,
                                                  self.DeepPurpose_model,
-                                                 self.SAscore_model,
+                                                 self.RAscore_model,
                                                  self.minPSeqLen,
                                                  **kwargs)
                     prop = [ExactMolWt(mol), MolLogP(mol), CalcTPSA(mol)]
