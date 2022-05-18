@@ -199,7 +199,7 @@ for p in paths:
         print(p)
         os.makedirs(paths[p]) 
 
-for i in range(1,n_iterations):
+for i in range(0,n_iterations):
     for j in trange(n_policy, desc='Policy gradient...'):
         print(j)
         #Call the policy_gradient function to train
