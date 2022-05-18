@@ -115,7 +115,7 @@ def simple_moving_average(previous_values, new_value, ma_window_size=10):
     return value_ma
 
 
-def get_reward_BA_continued(smiles, target_pSeq_dict,groupD_pSeq_dict, side_pSeq_dict, ppi_graph, dis_Prot_list,
+def get_reward_BA_continued(smiles, target_pSeq_dict,groupD_pSeq_dict, ppi_graph, dis_Prot_list,
                   DeepPurpose_model,RAscore_model, minPSeqLen=500, invalid_reward=0.0):
     print("smiles: " + str(smiles))
 
@@ -166,14 +166,13 @@ DeepPurpose_model = models.model_pretrained(model = 'Daylight_AAC_DAVIS')
 
 print("target_pSeq_dict: " + str(len(target_pSeq_dict.keys())))
 print("groupD_pseq_dict: " + str(len(groupD_pseq_dict.keys())))
-print("side_pSeq_dict: " + str(len(side_pSeq_dict.keys())))
 print("dis_Prot_list: " + str(dis_Prot_list))
 print("geneSet: " + str(geneSet))
 
 #reinforcement model
 
 RL_BA = BA_Reinforcement_3(my_generator, get_reward_BA_continued, 
-                           target_pSeq_dict,groupD_pseq_dict,side_pSeq_dict, ppi_graph, dis_Prot_list,
+                           target_pSeq_dict,groupD_pseq_dict, ppi_graph, dis_Prot_list,
                            DeepPurpose_model, xgb_scorer,minPSeqLen=maxProtSeqLength)
 print("my reinforcement load success")   
 rewards = []
