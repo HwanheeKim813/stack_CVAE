@@ -13,15 +13,16 @@ git clone https://github.com/HwanheeKim813/stack_CVAE.git
 
 cd stack_CVAE
 
-# Create new conda environment with Python 3.6
-conda create -n stack_CVAE python=3.6
+# Create new conda environment with Python 3.7
+conda create -n stack_CVAE python=3.7
 # Activate the environment
 conda activate stack_CVAE
 # Install conda dependencies
 conda install -c rdkit rdkit nox cairo
 
-# Instal pip dependencies
+# Install pip dependencies
 pip install -r requirements.txt
+pip install git+https://github.com/reymond-group/RAscore.git@master
 
 #install data
 wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1CvmznJFNiMu_k20MKKtdV0hL4v2KogVe' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1CvmznJFNiMu_k20MKKtdV0hL4v2KogVe" -O data.zip && rm -rf /tmp/cookies.txt
