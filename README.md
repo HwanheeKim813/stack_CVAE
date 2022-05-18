@@ -19,7 +19,7 @@ conda create -n stack_CVAE python=3.6
 conda activate stack_CVAE
 # Install conda dependencies
 conda install -c rdkit rdkit nox cairo
-conda install pytorch=1.1.0 torchvision=0.2.1 -c pytorch
+
 # Instal pip dependencies
 pip install -r requirements.txt
 
