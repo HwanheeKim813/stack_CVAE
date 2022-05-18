@@ -1,10 +1,4 @@
-numpy
-scikit-learn
-scipy
 tqdm
 matplotlib
-requests
+git+https://github.com/bp-kelley/descriptastorus 
 DeepPurpose
-tensorboard==1.15.0
-tensorflow==1.15.0
-xgboost==1.2.0
