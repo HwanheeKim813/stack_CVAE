@@ -1,5 +1,4 @@
 tqdm
 matplotlib
-git+https://github.com/reymond-group/RAscore.git@master
 git+https://github.com/bp-kelley/descriptastorus 
 DeepPurpose
