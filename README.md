@@ -69,7 +69,7 @@ optional arguments:
   -ss save sample       save samples.
   -sf save sample graph figure save samples graph.
 
-python generate_sample.py -n ['model_0','model_100','model_200','model_300','model_400','model_500']
+python generate_sample.py
 python sample_prop_check.py
 </code>
 </pre>
