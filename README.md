@@ -56,8 +56,8 @@ Test
 -------------
 <pre>
 <code>
-$ python test.py -h
-usage: test.py [-h] [-c condition] [-d Drug] [-s sample] [-p path] [-n models name] [-ss save sample] [-sf save sample graph figure]
+$ python generate_sample.py -h
+usage: generate_sample.py [-h] [-c condition] [-d Drug] [-s sample] [-p path] [-n models name] [-ss save sample] [-sf save sample graph figure]
 
 optional arguments:
   -h, --help            show this help message and exit
