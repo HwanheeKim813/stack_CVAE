@@ -51,3 +51,24 @@ Run
 python stackCVAE_rein_train.py
 </code>
 </pre>
+
+Test
+-------------
+<pre>
+<code>
+$ python test.py -h
+usage: test.py [-h] [-c condition] [-d Drug] [-s sample] [-p path] [-n models name] [-ss save sample] [-sf save sample graph figure]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -c condition          Properties for Generate, [MW,logP,TPSA]
+  -d Drug               A Drug Name for Generate
+  -s sample             Number of samples want to generate sample.
+  -p path               model's path want to generate sample.
+  -n models name        model's name want to generate sample.
+  -ss save sample       save samples.
+  -sf save sample graph figure save samples graph.
+
+python test.py -n ['model_0','model_100','model_200','model_300','model_400','model_500']
+</code>
+</pre>
