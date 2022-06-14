@@ -29,7 +29,7 @@ def get_args():
     parser.add_argument('-c', metavar='condition', type=list, default=[464.086, 5.549, 92.35], help="Properties for Generate, [MW,logP,TPSA]")
     parser.add_argument('-d', metavar='Drug', type=str, default='Sorafenib', help="A Drug Name for Generate")
     parser.add_argument('-s', metavar='sample',type=int, default=1000, help="Number of samples want to generate sample.")
-    parser.add_argument('-p', metavar='path',type=str, default='model', help="model's path want to generate sample.")
+    parser.add_argument('-p', metavar='path',type=str, default='sorafenib_result', help="model's path want to generate sample.")
     parser.add_argument('-n', metavar='models name',type=list, default=['model_0','model_100','model_200','model_300','model_400','model_500'], help="model's name want to generate sample.")
     parser.add_argument('-ss', metavar='save sample',type=bool, default=True, help="save samples.")
     parser.add_argument('-sf', metavar='save sample graph figure',type=bool, default=False, help="save samples graph.")
@@ -77,7 +77,7 @@ def main():
         print ('number of trial : ', len(smiles))
         smiles = [s.split('>')[0] for s in smiles] 
         if save_sample:
-            with open('./{}/graph/result{}.txt'.format(path,i), 'w') as w:
+            with open('./{}/graph/result_{}.txt'.format(path,i), 'w') as w:
                 w.write('SMILES\n')
                 for smile in smiles:
                     try:
