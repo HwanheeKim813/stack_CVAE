@@ -17,7 +17,7 @@ import os
 import warnings
 warnings.filterwarnings(action='ignore') 
 
-gen_data_path = '/BiO2/DrugDesign/ReLeaSE/data/chembl_smiles_prop.txt'
+gen_data_path = '../data/chembl_smiles_prop.txt'
 
 """
 tokens = ['<', '>', '#', '%', ')', '(', '+', '-', '/', '.', '1', '0', '3', '2', '5', '4', '7',
@@ -66,7 +66,6 @@ my_generator = RNNVAE(input_size=gen_data.n_characters,layer_type = layer_type,h
 					  batch_size=batch_size, num_layers=n_rnn_layer, lr=lr, has_stack=True, stack_width=stack_width, stack_depth=stack_depth)
 					  
 my_generator = my_generator.cuda()
-my_generator.load_model('/BiO2/DrugDesign/ReLeaSE/stack_cvae/CVAE_20210413_largeData_batch128_prop3/model_179.pth')
 print(my_generator)
 
 model_path = '/BiO2/DrugDesign/ReLeaSE/stack_cvae/model'
