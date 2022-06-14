@@ -34,17 +34,16 @@ tokens = ['<', '>', '#', ')', '(', '+', '-', '/', '.', '1', '3', '2', '5', '4', 
 		  '\\', 'c', 'e', 'i', 'l', 'o', 'n', 'p', 's', 'r','!','^']
 '''		  
 		  
-batch_size = 128  #128
+batch_size = 1
 latent_size = 200
 unit_size = 512
-n_rnn_layer = 3 # 환희님:3 , 수현언니:1
-num_eqochs = 500 #500
+n_rnn_layer = 3 
+num_eqochs = 500
 stack_width = 50
 stack_depth = 10
 prop=[464.086, 5.549, 92.35]
 prop_size = 3
-#prop=[5.549]
-#prop_size = 1
+
 
 start = time.time()
 gen_data = GeneratorData(training_data_path=gen_data_path, delimiter='\t', 
@@ -70,25 +69,9 @@ my_generator = my_generator.cuda()
 my_generator.load_model('/BiO2/DrugDesign/ReLeaSE/stack_cvae/CVAE_20210413_largeData_batch128_prop3/model_179.pth')
 print(my_generator)
 
-model_path = '/BiO2/DrugDesign/ReLeaSE/stack_cvae/CVAE_20210413_largeData_batch128_prop3'
+model_path = '/BiO2/DrugDesign/ReLeaSE/stack_cvae/model'
 if not os.path.exists(model_path):
 	os.makedirs(model_path)   
 
 
-my_generator.fit(gen_data, num_eqochs, prop, start_epoch = 180, save_dir=model_path)
-
-
-'''
-RNNVAE(
-  (data_encoder): Embedding(42, 1500)
-  (eocoder_rnn): GRU(1500, 1500)
-  (decoder_rnn): GRU(1500, 1500)
-  (encoder_target_decoder): Linear(in_features=1500, out_features=42, bias=True)
-  (decoder_target_decoder): Linear(in_features=1500, out_features=42, bias=True)
-  (hidden2mean): Linear(in_features=1500, out_features=1000, bias=True)
-  (hidden2log): Linear(in_features=1500, out_features=1000, bias=True)
-  (latent2hidden): Linear(in_features=1000, out_features=1500, bias=True)
-  (output2vocab): Linear(in_features=1500, out_features=42, bias=True)
-  (criterion): MSELoss()
-)
-'''
+my_generator.fit(gen_data, num_eqochs, prop, start_epoch = 0, save_dir=model_path)
