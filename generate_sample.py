@@ -41,7 +41,7 @@ def get_args():
 def main():
     args = get_args()
     
-    gen_data_path = '../data/chembl_smiles_prop.txt'
+    gen_data_path = './data/chembl_smiles_prop.txt'
     batch_size = 1
     latent_size = 200
     unit_size = 512
@@ -54,7 +54,7 @@ def main():
     gen_data = GeneratorData(training_data_path=gen_data_path, delimiter='\t', 
                              cols_to_read=[0,1,2,3], keep_header=True,dif_len=True)
 
-    my_generator = RNNVAE(input_size=gen_data.n_characters,layer_type = layer_type,hidden_size = unit_size,
+    my_generator = stack_CVAE(input_size=gen_data.n_characters,layer_type = layer_type,hidden_size = unit_size,
                           latent_size = latent_size,output_size=gen_data.n_characters,max_sentence_length=10, prop_size=3,
                           batch_size=batch_size, num_layers=n_rnn_layer, lr=lr, has_stack=True, stack_width=stack_width, stack_depth=stack_depth)
                       
