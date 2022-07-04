@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 from torch.optim.lr_scheduler import ExponentialLR, StepLR
 import torch.nn.functional as F
-from batch_model import RNNVAE
+from batch_model import stack_CVAE
 import numpy as np
 import pickle
 from rdkit import Chem, DataStructs
@@ -61,14 +61,14 @@ print("n_characters : ",gen_data.n_characters)
 layer_type = 'GRU'
 lr = 0.001
 
-my_generator = RNNVAE(input_size=gen_data.n_characters,layer_type = layer_type,hidden_size = unit_size,
+my_generator = stack_CVAE(input_size=gen_data.n_characters,layer_type = layer_type,hidden_size = unit_size,
 					  latent_size = latent_size,output_size=gen_data.n_characters,max_sentence_length=10, prop_size=prop_size,
 					  batch_size=batch_size, num_layers=n_rnn_layer, lr=lr, has_stack=True, stack_width=stack_width, stack_depth=stack_depth)
 					  
 my_generator = my_generator.cuda()
 print(my_generator)
 
-model_path = '/BiO2/DrugDesign/ReLeaSE/stack_cvae/model'
+model_path = '../model'
 if not os.path.exists(model_path):
 	os.makedirs(model_path)   
 
