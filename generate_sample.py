@@ -1,4 +1,8 @@
 import sys
+import os
+from os import path
+sys.path.append(path.abspath('./stack_cvae'))
+
 import torch
 import torch.nn as nn
 from torch.optim.lr_scheduler import ExponentialLR, StepLR
