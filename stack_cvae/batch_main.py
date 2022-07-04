@@ -17,7 +17,7 @@ import os
 import warnings
 warnings.filterwarnings(action='ignore') 
 
-gen_data_path = '../data/chembl_smiles_prop.txt'
+gen_data_path = './data/chembl_smiles_prop.txt'
 
 """
 tokens = ['<', '>', '#', '%', ')', '(', '+', '-', '/', '.', '1', '0', '3', '2', '5', '4', '7',
