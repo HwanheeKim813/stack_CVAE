@@ -30,7 +30,7 @@ def get_args():
     parser.add_argument('-d', metavar='Drug', type=str, default='Sorafenib', help="A Drug Name for Generate")
     parser.add_argument('-s', metavar='sample',type=int, default=1000, help="Number of samples want to generate sample.")
     parser.add_argument('-p', metavar='path',type=str, default='sorafenib_result', help="model's path want to generate sample.")
-    parser.add_argument('-n', metavar='models name',type=list, default=['model_0','model_100','model_200','model_300','model_400','model_500'], help="model's name want to generate sample.")
+    parser.add_argument('-n', metavar='models name',type=str, default='model_0 model_100 model_200 model_300 model_400 model_500', help="model's name want to generate sample.")
     parser.add_argument('-ss', metavar='save sample',type=bool, default=True, help="save samples.")
     parser.add_argument('-sf', metavar='save sample graph figure',type=bool, default=False, help="save samples graph.")
     return parser.parse_args()
@@ -58,7 +58,7 @@ def main():
 
     path = args.p
     prop = args.c
-    names = args.n
+    names = args.n.split()
 
     pre_dup = []
     valid = []
@@ -107,9 +107,9 @@ def main():
         dup.append(dup_num)
         
     plt.figure()
-    plt.plot(epochs,pre_dup,color='blue',label='validated SMILES')
-    plt.plot(epochs,valid,color='orange',label='validated and unique SMILES')
-    plt.plot(epochs,valid_o,color='gray',label='validated and unique SMILES not overlapped with training data')
+    plt.plot(names,pre_dup,color='blue',label='validated SMILES')
+    plt.plot(names,valid,color='orange',label='validated and unique SMILES')
+    plt.plot(names,valid_o,color='gray',label='validated and unique SMILES not overlapped with training data')
     plt.legend()
     plt.title(args.d)
     if save_fig:
