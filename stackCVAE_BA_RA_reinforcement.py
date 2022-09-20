@@ -87,7 +87,8 @@ class BA_Reinforcement_3(object):
 
             prop = torch.tensor(prop).cuda()
             latent_vector, KLD = self.generator.encoder(trajectory_input[:-1],trajectory_input[1:],prop,encoder_hidden,encoder_stack)
-            discounted_reward = [reward * (gamma**i) for i in range(len(trajectory)-1)].reverse()
+            discounted_reward = [reward * (gamma**i) for i in range(len(trajectory)-1)]
+            discounted_reward.reverse()
             for p in range(len(trajectory)-1):
                 output, decoder_hidden = self.generator.sample(latent_vector,trajectory_input[p],trajectory_input[p+1],prop,decoder_hidden)
                 log_probs = F.log_softmax(output, dim=1)
