@@ -130,11 +130,10 @@ def get_reward_BA_continued(smiles, target_pSeq_dict,groupD_pSeq_dict, ppi_graph
     print('RAscore_reward : ', RAscore_reward)
     
     
-    if target_reward > 5.0:
-        final_biol_reward = (target_reward - 4.0)**2 + 1.0
+    if target_reward < (drug_BA_dict[drug] + 0.2) and target_reward > (drug_BA_dict[drug] - 0.2):
+        final_biol_reward = 11.0
     else:
-        final_biol_reward = 1.0
-    print('target_reward : ', final_biol_reward)  
+        final_biol_reward = 1.0  
     
     if groupD_reward <= 5.5:
         g_reward = 6.0
